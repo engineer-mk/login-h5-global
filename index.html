@@ -45,16 +45,11 @@
     jQuery(document).ready(function ($) {
         'use strict';
 
-        let return_url = getQueryString('return_url');
-        console.log(return_url);
+        const fullURL = window.location.href;
+        const urlParams = new URLSearchParams(fullURL);
+        const returnUrl = urlParams.get('return_url');
+        console.log(returnUrl);
 
-        //获取url参数
-        function getQueryString(name) {
-            let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-            let r = window.location.search.substr(1).match(reg);
-            if (r != null) return unescape(r[2]);
-            return null;
-        }
 
         //执行登录
         function doSignIn(username, password) {
@@ -72,7 +67,7 @@
             }).then(res => {
                 console.log(res);
                 if (res.success) {
-                    window.location.href = return_url + '?token=' + res.data.token;
+                    window.location.href = returnUrl + '?token=' + res.data.token;
                 } else {
                     alert(res.message);
                 }
