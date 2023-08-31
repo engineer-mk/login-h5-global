@@ -55,6 +55,13 @@
         }
         console.log(returnUrl);
 
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter' || event.keyCode === 13) {
+                // 这里是回车键被按下后要执行的操作
+                signIn();
+            }
+        });
+
         //执行登录
         function doSignIn(username, password) {
             fetch('http://159.75.29.64:8001/admin/api/admin/user/login', {
@@ -94,8 +101,11 @@
         var input = $('.validate-input .input100');
 
         $('.login100-form-btn').click(function () {
-            var check = true;
+            signIn();
+        });
 
+        function signIn() {
+            var check = true;
             for (var i = 0; i < input.length; i++) {
                 if (validate(input[i]) == false) {
                     showValidate(input[i]);
@@ -106,8 +116,7 @@
                 return false;
             }
             doSignIn($('input[name="username"]').val(), $('input[name="password"]').val());
-        });
-
+        }
 
         $('.validate-form .input100').each(function () {
             $(this).focus(function () {
