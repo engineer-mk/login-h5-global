@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const response = await fetch('http://159.75.29.64:8001/auth-global/api/admin/user/login', {
+            const response = await fetch('http://35.241.68.14:8001/auth-global/api/admin/user/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${type}`;
         messageDiv.textContent = message;
-        
+
         // 样式设置
         Object.assign(messageDiv.style, {
             position: 'fixed',
@@ -104,4 +104,4 @@ document.addEventListener('DOMContentLoaded', () => {
             thirdPartyLogin(type);
         });
     });
-}); 
+});
